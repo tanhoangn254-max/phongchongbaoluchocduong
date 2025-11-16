@@ -95,7 +95,8 @@
 
   <div class="contact-box">
     <h2>📬 Gửi tin nhắn đến nhà trường</h2>
-    <form id="contactForm">
+    <form method="POST" 
+    action="https://formspree.io/f/xanapvpp">
       <input type="text" name="name" placeholder="Họ và tên" required>
       <input type="email" name="email" placeholder="Email" required>
       <textarea name="message" rows="5" placeholder="Nội dung tin nhắn" required></textarea>
@@ -108,36 +109,8 @@
     &copy; 2025 Trường Tân Mỹ Chánh. Chung tay vì học đường an toàn.
   </footer>
 
-  <script>
-    const form = document.getElementById('contactForm');
-    const responseDiv = document.getElementById('response');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        message: formData.get('message')
-      };
-
-      try {
-        const res = await fetch('http://localhost:3000/feedback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-
-        const result = await res.text();
-        responseDiv.innerText = result;
-        responseDiv.style.color = '#27ae60';
-        form.reset();
-      } catch (error) {
-        responseDiv.innerText = 'Gửi thất bại. Vui lòng thử lại.';
-        responseDiv.style.color = '#c0392b';
-      }
-    });
-  </script>
 
 </body>
 </html>
+
